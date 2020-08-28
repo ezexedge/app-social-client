@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
+import {Redirect} from 'react-router-dom'
+import {signin,authenticate} from '../auth'
 import axios from 'axios'
-import {signup} from '../auth'
-class Signup extends Component {
+
+class Signin extends Component {
 
     constructor(){
         super()
-        this.state = {
-            name: "",
+        this.state = {       
             email : "",
             password: "",
             error: "",
-            open : false
+            redirectToReferer:false,
+            loading: false
         }
     }
     
@@ -19,41 +21,41 @@ class Signup extends Component {
         this.setState({[name]: event.target.value})
     }
 
+
+
+
     clickSubmit = event => {
         event.preventDefault()
-        const {name,email,password} = this.state
+        this.setState({loading: true})
+        const {email,password} = this.state
         const user = {
-           name: name,
            email: email,
            password: password
         }
-        //console.log(user)
-        signup(user)
+        console.log(user)
+        signin(user)
         .then(data => {
-            if(data.error) this.setState({error:data.error})
-                else this.setState({
-                    error: "",
-                    name: "",
-                    email: "",
-                    password: "",
-                    open: true
-                })
+            if(data.error){
+                this.setState({error:data.error,loading:false})
+            } 
+                else {
+                    //auth
+                    this.authenticate(data,()=>{
+                        this.setState({redirectToReferer:true , loading:false })
+                    })
+
+                    //redirect
+                }
         })
     }
 
-  //signup
 
 
-signupForm = (name , email , password) => (
+
+signinForm = (email , password) => (
 
                  <form>
 
-                    <div className="form-group" >
-
-                        <label className="text-muted">Name</label>
-                        <input type="text" onChange={this.handleChange("name")}  className="form-control" value={name} />
-
-                    </div>
 
 
                     <div className="form-group" >
@@ -76,11 +78,15 @@ signupForm = (name , email , password) => (
 
     render() {
 
-        const {name,email,password,error,open} = this.state
+        const {email,password,error,redirectToReferer,loading} = this.state
+
+        if(redirectToReferer){
+            return <Redirect to="/" />
+        }
 
         return ( 
             <div className="container">
-                 <h2>Signup</h2>
+                 <h2>signin</h2>
 
 
                 <div className="alert alert-danger" style={{display: error ? "" : "none"}}>
@@ -88,15 +94,17 @@ signupForm = (name , email , password) => (
                 </div>
 
 
-                 <div className="alert alert-info" style={{display: open ? "" : "none"}}>
-                    New account is successfully created .Please sign in
-                </div>
+                {loading ? <div className="jumbotron text-center">
+                    <h2>Cargando...</h2>
+                </div> : 
+                ""
+                }        
 
-                {this.signupForm(name,email,password)}
+                {this.signinForm(email,password)}
 
             </div>
          );
     }
 }
  
-export default Signup;
+export default Signin;
