@@ -40,7 +40,7 @@ class Signin extends Component {
             } 
                 else {
                     //auth
-                    this.authenticate(data,()=>{
+                    authenticate(data,()=>{
                         this.setState({redirectToReferer:true , loading:false })
                     })
 

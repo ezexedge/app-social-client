@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import {Link} from 'react-router-dom'
 import {signup} from '../auth'
 class Signup extends Component {
 
@@ -89,7 +90,7 @@ signupForm = (name , email , password) => (
 
 
                  <div className="alert alert-info" style={{display: open ? "" : "none"}}>
-                    New account is successfully created .Please sign in
+        New account is successfully created .Please{" "} <Link to="/signin">sign in</Link> 
                 </div>
 
                 {this.signupForm(name,email,password)}
