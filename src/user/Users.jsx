@@ -26,13 +26,13 @@ class Users extends Component {
             <div className="row">
             {users.map((user,i)=> (
              <div className="card col-md-4" style={{width: "18rem"}} key={i}>
-             <img className="card-img-top" src={DefaultProfile} alt="Card image cap"
-             style={{
-                 widht: "100%",
-                 height: "15vw",
-                 objectFit: "contain"
-             }}
-             />
+                    <img style={{height: "200px",width:'auto'}}
+                className="img-thumbnail"
+                src={ `${process.env.REACT_APP_API_URL}/user/photo/${user._id}?${new Date().getTime()}`}
+                onError={i=>(i.target.src = `${DefaultProfile}`)}
+                alt="photo" />
+
+            
              <div className="card-body">
             <h5 className="card-title">{user.name}</h5>
                <p className="card-text">
@@ -50,6 +50,8 @@ class Users extends Component {
 
     render() { 
         const { users } = this.state
+
+
 
         return ( 
             <div className="container">
