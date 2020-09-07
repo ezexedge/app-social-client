@@ -3,6 +3,7 @@ import {isAuthenticate} from '../auth'
 import {Redirect , Link} from 'react-router-dom'
 import DefaultProfile from '../images/avatar.png'
 import DeleteUser from './DeleteUser'
+import FollowProfileButton from './FollowProfileButton'
 
 import { read } from './apiUser'
 
@@ -79,7 +80,7 @@ class Profile extends Component {
                            
 
              </div>
-                        {isAuthenticate().user && isAuthenticate().user._id === user._id && (
+                        {isAuthenticate().user && isAuthenticate().user._id === user._id ? (
                             <div className="d-inline-block mt-5">
                                 <Link className="btn btn-raised btn-success mr-5"
                                 to={`/user/edit/${user._id}`} >
@@ -88,7 +89,7 @@ class Profile extends Component {
                               <DeleteUser userId={user._id} />
                             </div>
 
-                        )}
+                        ) : (<FollowProfileButton/>) }
                     </div>
                 </div>
                 <div className="row">
