@@ -9,28 +9,52 @@ import { read } from './apiUser'
 
 class Profile extends Component {
 
-    constructor(){
-        super()
+    constructor() {
+        super();
         this.state = {
-            user : "",
-            redirectToSignin: false
-        }
-    }
+          user: { following: [], followers: [] },
+          redirectToSignin: false,
+          following: false,
+          error: "",
+          posts: []
+        };
+      }
+    
+      // check follow
+      checkFollow = user => {
+        const jwt = isAuthenticate();
+        const match = user.followers.find(follower => {
+          // one id has many other ids (followers) and vice versa
+          return follower._id === jwt.user._id;
+        });
+        return match;
+      };
+    
+      clickFollowButton = callApi => {
+        const userId = isAuthenticate().user._id;
+        const token = isAuthenticate().token;
+    
+        callApi(userId, token, this.state.user._id).then(data => {
+          if (data.error) {
+            this.setState({ error: data.error });
+          } else {
+            this.setState({ user: data, following: !this.state.following });
+          }
+        });
+      };
+    
+      init = userId => {
+        const token = isAuthenticate().token;
+        read(userId, token).then(data => {
+          if (data.error) {
+            this.setState({ redirectToSignin: true });
+          } else {
+            let following = this.checkFollow(data);
+            this.setState({ user: data, following });
+          }
+        });
+      };
 
-
-     init = userId => {
-        const token = isAuthenticate().token
-        read(userId,token)
-        .then(data => {
-            if(data.error){
-                this.setState({redirectToSignin: true})
-            }else{
-                this.setState({user: data})
-            }
-
-        })
-
-    }
 
     componentDidMount(){
         const userId = this.props.match.params.userId
@@ -89,7 +113,9 @@ class Profile extends Component {
                               <DeleteUser userId={user._id} />
                             </div>
 
-                        ) : (<FollowProfileButton/>) }
+                        ) : (
+                        <FollowProfileButton following={this.state.following}  onButtonClick={this.clickFollowButton}/>
+                        ) }
                     </div>
                 </div>
                 <div className="row">
