@@ -1,10 +1,18 @@
 import React from 'react';
+import Post from '../post/Post'
 
 const Home = () => ( 
+    <div>
         <div className="jumbotron">
-            <h2>Home</h2>
-            <p className="lead">Welcome to react frontend</p>
+            <p className="lead">bienvenido social mern</p>
+
         </div>
+
+        <div className="container fluid">
+            <Post/>
+        </div>
+    </div>
+
 );
 
  
