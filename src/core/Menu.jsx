@@ -21,6 +21,13 @@ const Menu = ({history}) => (
                         <Link className="nav-link" to="/users" style={isActive(history,'/users')} >Users</Link>
                 </li>
 
+                   <li className="nav-item">
+                                <Link to={`/post/create`} style={isActive(history,`/post/create`)} className="nav-link" >
+                                Create post
+                                </Link>  
+                
+                         </li>
+
                 {!isAuthenticate() && (
                     <>
                      <li className="nav-item">
@@ -55,12 +62,7 @@ const Menu = ({history}) => (
                 
                          </li>
 
-                         <li className="nav-item">
-                                <Link to={`/post/create`} style={isActive(history,`/post/create`)} className="nav-link" >
-                                Create post
-                                </Link>  
-                
-                         </li>
+                      
                 </>
                 )}
                
