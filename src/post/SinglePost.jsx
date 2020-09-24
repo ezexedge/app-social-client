@@ -3,6 +3,7 @@ import {singlePost,remove,like,unlike} from './apiPost'
 import DefaultPost from '../images/mountains.jpg'
 import {Link,Redirect} from 'react-router-dom'
 import {isAuthenticate} from '../auth/index'
+import  Comment  from './Comment'
 
 class SinglePost extends Component {
     state = { 
@@ -10,7 +11,8 @@ class SinglePost extends Component {
         redirectToHome: false,
         redirectToSignin: false,
         like:false,
-        likes:0
+        likes:0,
+        comments: []
      }
 
      checkLike = (likes) => {
@@ -27,9 +29,18 @@ class SinglePost extends Component {
              if(data.error){
                  console.log(data.error)
              }else{
-                 this.setState({post: data,likes: data.likes.length,like: this.checkLike(data.likes)})
+                 this.setState({
+                     post: data,
+                     likes: data.likes.length,
+                     like: this.checkLike(data.likes),
+                     comments: data.comments
+                    })
              }
          })
+     }
+
+     updateComments = comments => {
+         this.setState({comments})
      }
 
 
@@ -108,9 +119,10 @@ class SinglePost extends Component {
             {post.body}
             </p>
             <br/>
-            <div className="font-italic mark">
+            <p className="font-italic mark">
             Creado por : <Link to={`${posterId}`}>{posterName}</Link>{" "}
             en {new Date(post.created).toDateString()}
+            </p>
             <div className="d-inline-block">
             <Link to={`/`} className="btn btn-raised btn-primary btn-sm ml-5 mr-5" >
             Volver
@@ -131,13 +143,13 @@ class SinglePost extends Component {
             </div>
             </div>
             
-            </div>
+        
         
         )
      }
 
     render() { 
-        const {post,redirectToHome,redirectToSignin} = this.state
+        const {post,redirectToHome,redirectToSignin,comments} = this.state
 
         if(redirectToHome){
             return <Redirect to={`/`} />
@@ -155,7 +167,10 @@ class SinglePost extends Component {
 
                 }        
 
+
+                <Comment postId={post._id} comments={comments.reverse()} updateComments={this.updateComments} />
             </div>
+
          );
     }
 }
