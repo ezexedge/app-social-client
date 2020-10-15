@@ -13,10 +13,11 @@ export const create = (userId, token, post) => {
         .catch(err => console.log(err));
 };
 
+/*
 export const list = () => {
 
 
-    return fetch(`http://localhost:8000/posts`,{
+    return fetch(`${process.env.REACT_APP_API_URL}/posts`,{
          method: "GET"
      })
      .then(response => {
@@ -25,12 +26,12 @@ export const list = () => {
      .catch(err => console.log(err))
 
  }
-
+*/
 
  export const singlePost = (postId) => {
 
 
-    return fetch(`http://localhost:8000/post/${postId}`,{
+    return fetch(`${process.env.REACT_APP_API_URL}/post/${postId}`,{
          method: "GET"
      })
      .then(response => {
@@ -43,7 +44,7 @@ export const list = () => {
  export const listByUser = (userId,token) => {
 
 
-    return fetch(`http://localhost:8000/posts/by/${userId}`,{
+    return fetch(`${process.env.REACT_APP_API_URL}/posts/by/${userId}`,{
          method: "GET",
          headers: {
             Accept: "application/json",
@@ -61,7 +62,7 @@ export const list = () => {
 
  export const remove = (postId,token) => {
 
-    return fetch(`http://localhost:8000/post/${postId}`,{
+    return fetch(`${process.env.REACT_APP_API_URL}/post/${postId}`,{
          method: "DELETE",
          headers: { 
          Accept: "application/json",
@@ -77,7 +78,7 @@ export const list = () => {
 
 
  export const update = (postId, token, post) => {
-    return fetch(`http://localhost:8000/post/${postId}`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/post/${postId}`, {
         method: "PUT",
         headers: {
             Accept: "application/json",
@@ -110,7 +111,7 @@ export const like = (userId, token, postId) => {
 
 
 export const unlike = (userId, token, postId) => {
-    return fetch(`http://localhost:8000/post/unlike`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/post/unlike`, {
         method: "PUT",
         headers: {
             Accept: "application/json",
@@ -144,7 +145,7 @@ export const comment = (userId, token, postId,comment) => {
 
 
 export const uncomment = (userId, token, postId,comment) => {
-    return fetch(`http://localhost:8000/post/uncomment`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/post/uncomment`, {
         method: "PUT",
         headers: {
             Accept: "application/json",
@@ -159,7 +160,7 @@ export const uncomment = (userId, token, postId,comment) => {
         .catch(err => console.log(err));
 };
 
-export const listPost = page => {
+export const list = page => {
     return fetch(`${process.env.REACT_APP_API_URL}/posts/?page=${page}`, {
         method: "GET"
     })

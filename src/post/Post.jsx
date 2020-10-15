@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {listPost} from './apiPost'
+import {list} from './apiPost'
 import DefaultPost from '../images/mountains.jpg'
 import {Link} from 'react-router-dom'
 class Post extends Component {
@@ -12,7 +12,7 @@ class Post extends Component {
     }
  
     loadPosts = page => {
-        listPost(page).then(data => {
+        list(page).then(data => {
             if (data.error) {
                 console.log(data.error);
             } else {
