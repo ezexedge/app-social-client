@@ -72,13 +72,13 @@ class NewPost extends Component {
         const { title, body, fileSize } = this.state;
         if (fileSize > 100000) {
             this.setState({
-                error: "File size should be less than 100kb",
+                error: "Archivo debe pesar menos de 100kb",
                 loading: false
             });
             return false;
         }
         if (title.length === 0 || body.length === 0) {
-            this.setState({ error: "All fields are required", loading: false });
+            this.setState({ error: "todos los campos debe ser llenado", loading: false });
             return false;
         }
         return true;
@@ -87,7 +87,7 @@ class NewPost extends Component {
     newPostForm = (title, body) => (
         <form>
             <div className="form-group">
-                <label className="text-muted">Post Photo</label>
+                <label className="text-muted">Foto post</label>
                 <input
                     onChange={this.handleChange("photo")}
                     type="file"
@@ -96,7 +96,7 @@ class NewPost extends Component {
                 />
             </div>
             <div className="form-group">
-                <label className="text-muted">Title</label>
+                <label className="text-muted">Titulo</label>
                 <input
                     onChange={this.handleChange("title")}
                     type="text"
@@ -119,7 +119,7 @@ class NewPost extends Component {
                 onClick={this.clickSubmit}
                 className="btn btn-raised btn-primary"
             >
-                Create Post
+                Crear Post
             </button>
         </form>
     );
@@ -140,7 +140,7 @@ class NewPost extends Component {
         return ( 
             <div className="container">
 
-                <h2 className="mt-5 mb-5">Create new post</h2>
+                <h2 className="mt-5 mb-5">Crear nuevo post</h2>
 
                 <div className="alert alert-danger" style={{display: error ? "" : "none"}}>
                     {error}

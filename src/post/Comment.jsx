@@ -110,7 +110,7 @@ class Comment extends Component {
 
                 <div className="col-md-8 col-md-offset-2">
 
-        <h3 className="text-primary">{comments.length} Comments</h3>
+        <h3 className="text-primary">{comments.length} Commentarios</h3>
                     <hr/>
 
                     {comments.map((comment,i)=> ( 

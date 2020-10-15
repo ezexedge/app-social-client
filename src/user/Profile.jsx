@@ -95,7 +95,7 @@ class Profile extends Component {
 
         return ( 
             <div className="container">
-                                    <h2 className="mt-5 mb-5">Profile</h2>
+                                    <h2 className="mt-5 mb-5">Perfil</h2>
 
                 <div className="row">
                     <div className="col-md-6">
@@ -125,11 +125,11 @@ class Profile extends Component {
                             <div className="d-inline-block mt-5">
                                 <Link className="btn btn-raised btn-info mr-5"
                                 to={`/post/create`} >
-                                    Create Post
+                                    Crear post
                                 </Link>
                                 <Link className="btn btn-raised btn-success mr-5"
                                 to={`/user/edit/${user._id}`} >
-                                    Edit profile
+                                    Editar perfil
                                 </Link>
                               <DeleteUser userId={user._id} />
                             </div>

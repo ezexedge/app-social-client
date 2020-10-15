@@ -69,7 +69,7 @@ class FindPeople extends Component {
                </p>
                   
                <Link to={`/user/${user._id}`} className="btn btn-raised btn-primary btn-sm" >
-               view Profile
+               Ver perfil
                </Link>
 
                <button onClick={()=> this.clickFollow(user,i)} className="btn btn-raised btn-info float-right btn-sm" >
@@ -88,7 +88,7 @@ class FindPeople extends Component {
 
         return ( 
             <div className="container">
-                <h2 className="mt-5 mb-5">Users</h2>
+                <h2 className="mt-5 mb-5">Usuarios</h2>
 
                 {open && ( 
                 <div className="alert alert-success">

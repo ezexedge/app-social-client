@@ -51,13 +51,13 @@ class EditPost extends Component {
         const { title, body, fileSize } = this.state;
         if (fileSize > 100000) {
             this.setState({
-                error: "File size should be less than 100kb",
+                error: "Archivo debe pesar meno de 100kb",
                 loading: false
             });
             return false;
         }
         if (title.length === 0 || body.length === 0) {
-            this.setState({ error: "All fields are required", loading: false });
+            this.setState({ error: "Todos los campos son necesario", loading: false });
             return false;
         }
         return true;
@@ -102,7 +102,7 @@ class EditPost extends Component {
     editPostForm = (title, body) => (
         <form>
             <div className="form-group">
-                <label className="text-muted">Post Photo</label>
+                <label className="text-muted">Foto post</label>
                 <input
                     onChange={this.handleChange("photo")}
                     type="file"
@@ -111,7 +111,7 @@ class EditPost extends Component {
                 />
             </div>
             <div className="form-group">
-                <label className="text-muted">Title</label>
+                <label className="text-muted">Titulo</label>
                 <input
                     onChange={this.handleChange("title")}
                     type="text"
@@ -134,7 +134,7 @@ class EditPost extends Component {
                 onClick={this.clickSubmit}
                 className="btn btn-raised btn-primary"
             >
-            update Post
+            Modificar post
             </button>
         </form>
     );

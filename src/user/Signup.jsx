@@ -51,7 +51,7 @@ signupForm = (name , email , password) => (
 
                     <div className="form-group" >
 
-                        <label className="text-muted">Name</label>
+                        <label className="text-muted">Nombre</label>
                         <input type="text" onChange={this.handleChange("name")}  className="form-control" value={name} />
 
                     </div>
@@ -81,7 +81,7 @@ signupForm = (name , email , password) => (
 
         return ( 
             <div className="container">
-                 <h2>Signup</h2>
+                 <h2>Crear cuenta</h2>
 
 
                 <div className="alert alert-danger" style={{display: error ? "" : "none"}}>
@@ -90,7 +90,7 @@ signupForm = (name , email , password) => (
 
 
                  <div className="alert alert-info" style={{display: open ? "" : "none"}}>
-        New account is successfully created .Please{" "} <Link to="/signin">sign in</Link> 
+        Cuenta creada .Por favor ingrese a {" "} <Link to="/signin">iniciar sesion</Link> 
                 </div>
 
                 {this.signupForm(name,email,password)}

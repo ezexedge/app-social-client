@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom'
 import {signin,authenticate} from '../auth'
+import SocialLogin from './SocialLogin'
 import axios from 'axios'
 
 class Signin extends Component {
@@ -54,9 +55,13 @@ class Signin extends Component {
 
 signinForm = (email , password) => (
 
-                 <form>
+                            <form>
 
-
+            <h2 className="mt-5 mb-5">Iniciar sesion</h2>
+            
+            <hr />
+                <SocialLogin />
+            <hr />
 
                     <div className="form-group" >
 
@@ -86,7 +91,6 @@ signinForm = (email , password) => (
 
         return ( 
             <div className="container">
-                 <h2>signin</h2>
 
 
                 <div className="alert alert-danger" style={{display: error ? "" : "none"}}>

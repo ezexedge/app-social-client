@@ -11,6 +11,7 @@ import FindPeople from './user/FindPeople'
 import NewPost from './post/NewPost'
 import SinglePost from './post/SinglePost'
 import EditPost from './post/EditPost'
+import Footer from './core/Footer'
 
 import PrivateRoute from './auth/PrivateRoute'
 
@@ -33,6 +34,8 @@ const MainRouter = () => (
                 <PrivateRoute exact path="/findpeople" component={FindPeople}/>
 
             </Switch>
+
+            <Footer/>
         
         </div>
      );

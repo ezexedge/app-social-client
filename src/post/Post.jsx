@@ -1,83 +1,124 @@
 import React, { Component } from 'react';
-import {list} from './apiPost'
+import {listPost} from './apiPost'
 import DefaultPost from '../images/mountains.jpg'
 import {Link} from 'react-router-dom'
-
 class Post extends Component {
-    constructor(){
-        super()
+    constructor() {
+        super();
         this.state = {
-            posts: []
-        }
+            posts: [],
+            page: 1,
+        };
     }
-
-
-    componentDidMount(){
-        list().then(data => {
-            if(data.error){
-                console.log(data.error)
-            }else{  
-                this.setState({posts: data})
+ 
+    loadPosts = page => {
+        listPost(page).then(data => {
+            if (data.error) {
+                console.log(data.error);
+            } else {
+                this.setState({ posts: data });
             }
-        })
+        });
+    };
+ 
+    componentDidMount() {
+        this.loadPosts(this.state.page);
     }
-
-
-        renderPosts = posts => {
-            return (
-                <div className="row">
-                {posts.map((post,i)=> { 
-
-                    const posterId = post.postedBy ? `/user/${post.postedBy._id}` : ''
-                    const posterName = post.postedBy ? post.postedBy.name : 'desconocido'
-
-                        return(
-                            <div className="card col-md-4" style={{width: "18rem"}} key={i}>
-                    
-                    
-
-
+ 
+    loadMore = number => {
+        this.setState({ page: this.state.page + number });
+        this.loadPosts(this.state.page + number);
+    };
+ 
+    loadLess = number => {
+        this.setState({ page: this.state.page - number });
+        this.loadPosts(this.state.page - number);
+    };
+ 
+    renderPosts = posts => {
+        return (
+            <div className="row">
+                {posts.map((post, i) => {
+                    const posterId = post.postedBy
+                        ? `/user/${post.postedBy._id}`
+                        : "";
+                    const posterName = post.postedBy
+                        ? post.postedBy.name
+                        : " Unknown";
+ 
+                    return (
+                        <div className="card col-md-4" key={i}>
                             <div className="card-body">
-                            <img src={`${process.env.REACT_APP_API_URL}/post/photo/${post._id}`} 
-                            alt={post.title}
-                            onError= {i => i.target.src = `${DefaultPost}`}
-                            className="img-thumbnail mb-3"
-                            style={{height: "200px",width: "auto"}}
-                            />
-                            <h5 className="card-title">{post.title}</h5>
-                            <p className="card-text">
-                            {post.body.substring(0,100)}
-                            </p>
-                            <br/>
-                            <div className="font-italic mark">
-                            Creado por : <Link to={`${posterId}`}>{posterName}</Link>{" "}
-                            en {new Date(post.created).toDateString()}
+                                <img
+                                    src={`${
+                                        process.env.REACT_APP_API_URL
+                                    }/post/photo/${post._id}`}
+                                    alt={post.title}
+                                    onError={i =>
+                                        (i.target.src = `${DefaultPost}`)
+                                    }
+                                    className="img-thunbnail mb-3"
+                                    style={{ height: "200px", width: "100%" }}
+                                />
+                                <h5 className="card-title">{post.title}</h5>
+                                <p className="card-text">
+                                    {post.body.substring(0, 100)}
+                                </p>
+                                <br />
+                                <p className="font-italic mark">
+                                    creado por{" "}
+                                    <Link to={`${posterId}`}>
+                                        {posterName}{" "}
+                                    </Link>
+                                    en {new Date(post.created).toDateString()}
+                                </p>
+                                <Link
+                                    to={`/post/${post._id}`}
+                                    className="btn btn-raised btn-primary btn-sm"
+                                >
+                                    Leer mas
+                                </Link>
                             </div>
-                            <Link to={`/post/${post._id}`} className="btn btn-raised btn-primary btn-sm" >
-                            Leer mas
-                            </Link>
-                            </div>
-                            </div>
-                        )
+                        </div>
+                    );
                 })}
             </div>
-            )
-        }
-
-    render() { 
-        const { posts } = this.state
-
-
-
-        return ( 
+        );
+    };
+ 
+    render() {
+        const { posts, page } = this.state;
+        return (
             <div className="container">
                 <h2 className="mt-5 mb-5">
-                    {!posts.length ? 'loading....' : 'recent posts'}
+                    {!posts.length ? "No hay posts!" : "Posts recientes"}
                 </h2>
-              {this.renderPosts(posts)}
+ 
+                {this.renderPosts(posts)}
+ 
+                {page > 1 ? (
+                    <button
+                        className="btn btn-raised btn-warning mr-5 mt-5 mb-5"
+                        onClick={() => this.loadLess(1)}
+                    >
+                        Anterior ({this.state.page - 1})
+                    </button>
+                ) : (
+                    ""
+                )}
+ 
+                {posts.length ? (
+                    <button
+                        className="btn btn-raised btn-success mt-5 mb-5"
+                        onClick={() => this.loadMore(1)}
+                    >
+                        Proximo ({page + 1})
+                    </button>
+                ) : (
+                    ""
+                )}
             </div>
-         );
+        );
     }
 }
- 
 export default Post;

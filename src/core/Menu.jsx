@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom'
 import {signout,isAuthenticate} from '../auth'
 
-
 const isActive = (history,path) => {
     if(history.location.pathname === path) return {color:"#ff9900"}
         else return {color: "#fff"}
@@ -18,12 +17,12 @@ const Menu = ({history}) => (
                 </li>
 
                 <li className="nav-item">
-                        <Link className="nav-link" to="/users" style={isActive(history,'/users')} >Users</Link>
+                        <Link className="nav-link" to="/users" style={isActive(history,'/users')} >Usuarios</Link>
                 </li>
 
                    <li className="nav-item">
                                 <Link to={`/post/create`} style={isActive(history,`/post/create`)} className="nav-link" >
-                                Create post
+                                Crear post
                                 </Link>  
                 
                          </li>
@@ -31,10 +30,10 @@ const Menu = ({history}) => (
                 {!isAuthenticate() && (
                     <>
                      <li className="nav-item">
-                        <Link className="nav-link" to="/signin" style={isActive(history,'/signin')}>Sign in</Link>
+                        <Link className="nav-link" to="/signin" style={isActive(history,'/signin')}>Iniciar sesion</Link>
                 </li>
                 <li className="nav-item">
-                        <Link className="nav-link" to="/signup"  style={isActive(history,'/signup')}>Sign up</Link>
+                        <Link className="nav-link" to="/signup"  style={isActive(history,'/signup')}>Crear cuenta</Link>
                 </li>
 
                
@@ -46,7 +45,7 @@ const Menu = ({history}) => (
                     <>
                       <li className="nav-item">
                         <a className="nav-link"   style={isActive(history,'/signout'),{cursor: 'pointer'}} 
-                        onClick={()=>signout(()=> history.push('/'))}>Sign out</a>
+                        onClick={()=>signout(()=> history.push('/'))}>Cerrar sesion</a>
                          </li>
 
                           <li className="nav-item">
@@ -57,7 +56,7 @@ const Menu = ({history}) => (
  </li>
                                      <li className="nav-item">
                                 <Link to={`/findpeople`} style={isActive(history,`/findpeople`)} className="nav-link" >
-                                Find people
+                                Buscar personas
                                 </Link>  
                 
                          </li>

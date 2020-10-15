@@ -55,20 +55,20 @@ class EditProfile extends Component {
           }
 
         if (name.length === 0) {
-          this.setState({ error: "Name is required",loading:false});
+          this.setState({ error: "El nombre es necesario",loading:false});
           return false;
         }
         // email@domain.com
         if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
           this.setState({
-            error: "A valid Email is required",
+            error: "El email es necesario",
             loading: false
           });
           return false;
         }
         if (password.length >= 1 && password.length <= 5) {
           this.setState({
-            error: "Password must be at least 6 characters long",loading:false
+            error: "La contrasena debe tener 6 caracteres como minimo",loading:false
           });
           return false;
         }
@@ -125,7 +125,7 @@ class EditProfile extends Component {
         <form>
 
 <div className="form-group">
-        <label className="text-muted">Profile Photo</label>
+        <label className="text-muted">Foto de perfil</label>
         <input
           onChange={this.handleChange("photo")}
           type="file"
@@ -136,7 +136,7 @@ class EditProfile extends Component {
 
            <div className="form-group" >
 
-               <label className="text-muted">Name</label>
+               <label className="text-muted">Nombre</label>
                <input type="text" onChange={this.handleChange("name")}  className="form-control" value={name} />
 
            </div>
@@ -162,7 +162,7 @@ class EditProfile extends Component {
                <input type="password" onChange={this.handleChange("password")} className="form-control" value={password} />
 
            </div>
-        <button onClick={this.clickSubmit} className="btn btn-raised btn-primary">Update</button>
+        <button onClick={this.clickSubmit} className="btn btn-raised btn-primary">Modificar</button>
         </form>
 )
 
@@ -180,7 +180,7 @@ class EditProfile extends Component {
         return ( 
             <div className="container">
 
-                <h2 className="mt-5 mb-5">Edit</h2>
+                <h2 className="mt-5 mb-5">Editar</h2>
 
                 <div className="alert alert-danger" style={{display: error ? "" : "none"}}>
                     {error}

@@ -16,7 +16,7 @@ class ProfileTabs extends Component {
 
                     <div className="col-md-4">
 
-                        <h3 className="text-primary">Followers</h3>
+                        <h3 className="text-primary">Seguidores</h3>
                         <hr/>
 
                         {followers.map((person,i)=> ( 
@@ -56,7 +56,7 @@ class ProfileTabs extends Component {
 
                     <div className="col-md-4">
 
-                        <h3 className="text-primary">Following</h3>
+                        <h3 className="text-primary">Siguiendo</h3>
                         <hr/>
 
                         {following.map((person,i)=> ( 

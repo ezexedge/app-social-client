@@ -159,3 +159,12 @@ export const uncomment = (userId, token, postId,comment) => {
         .catch(err => console.log(err));
 };
 
+export const listPost = page => {
+    return fetch(`${process.env.REACT_APP_API_URL}/posts/?page=${page}`, {
+        method: "GET"
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
