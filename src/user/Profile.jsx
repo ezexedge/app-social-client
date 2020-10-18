@@ -114,8 +114,8 @@ class Profile extends Component {
                     <div className="col-md-6">
 
                     <div className="lead mt-2 ml-5">
-             <p>hole {isAuthenticate().user.name}</p>
-                        <p>hole {isAuthenticate().user.email}</p>
+             <p>hola : {user.name}</p>
+                        <p>email: {user.email}</p>
                         <p>{`Joined ${new Date(user.created).toDateString()}`}</p>
                            
 
