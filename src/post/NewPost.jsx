@@ -14,7 +14,6 @@ class NewPost extends Component {
             body: '',
             photo: '',
             error: '',
-            errorImg: false,
             user: {
 
             },
@@ -66,13 +65,12 @@ class NewPost extends Component {
 
             create(userId, token, this.postData).then(data => {
                 console.log(data)
-                if (data.error) this.setState({ errorImg : true });
+                if (data.error) this.setState({ error: data.error });
                 else {
                     this.setState({
                         loading: false,
                         title: "",
                         body: "",
-                        errorImg: false,
                         redirectToProfile: true
                     });
                 }
@@ -133,7 +131,7 @@ class NewPost extends Component {
 
     render() { 
 
-        const {title,body,photo,user,error, loading,errorImg, redirectToProfile} = this.state
+        const {title,body,photo,user,error, loading, redirectToProfile} = this.state
 
         
         if(redirectToProfile)return <Redirect to={`/user/${user._id}`} />
@@ -150,7 +148,6 @@ class NewPost extends Component {
                 <div className="alert alert-danger" style={{display: error ? "" : "none"}}>
                     {error}
                 </div>
-                {errorImg ? (<p>error al cargar el imagen</p>) : (" ")}
 
                 {loading ? (
                     <div className="jumbotron text-center">
