@@ -144,6 +144,7 @@ class NewPost extends Component {
             <div className="container">
 
                 <h2 className="mt-5 mb-5">Crear nuevo post</h2>
+                <p className="text-danger">Ingrese una foto menor a 1MB(megabytes)</p>
 
                 <div className="alert alert-danger" style={{display: error ? "" : "none"}}>
                     {error}
