@@ -1,5 +1,5 @@
 export const signup = (user) => {
-       return fetch(`${process.env.REACT_APP_API_URL}/signup`,{
+       return fetch(`http://157.230.87.53/api/signup`,{
             method: "POST",
             headers:{
                 Accept: "application/json",
@@ -16,7 +16,7 @@ export const signup = (user) => {
 
 
 export const  signin = (user) => {
-       return fetch(`${process.env.REACT_APP_API_URL}/signin`,{
+       return fetch(`http://157.230.87.53/api/signin`,{
             method: "POST",
             headers:{
                 Accept: "application/json",
@@ -44,7 +44,7 @@ export const signout = (next) => {
     if(typeof window !== "undefined") localStorage.removeItem('jwt')
     next()
 
-    return fetch(`${process.env.REACT_APP_API_URL}/signout`,{
+    return fetch(`http://157.230.87.53/api/signout`,{
         method: "GET",
     
     })
@@ -67,7 +67,7 @@ export const isAuthenticate = () => {
 }
 
 export const socialLogin = user => {
-    return fetch(`${process.env.REACT_APP_API_URL}/social-login/`, {
+    return fetch(`http://157.230.87.53/api/social-login/`, {
         method: "POST",
         headers: {
             Accept: "application/json",
