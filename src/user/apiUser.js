@@ -31,7 +31,7 @@ export const read = (userId,token) => {
 
  export const remove = (userId,token) => {
 
-    return fetch(`$http://157.230.87.53/api/user/${userId}`,{
+    return fetch(`http://157.230.87.53/api/user/${userId}`,{
          method: "DELETE",
          headers: { 
          Accept: "application/json",
