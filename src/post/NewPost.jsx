@@ -24,11 +24,27 @@ class NewPost extends Component {
       }
 
 
-      componentDidMount(){
-        this.postData = new FormData()
-        this.setState({user: isAuthenticate().user})
- 
-     }
+          componentDidMount(){
+       this.postData = new FormData()
+       this.setState({user: isAuthenticate().user})
+
+    }
+
+    isValid = () => {
+        const { title, body, fileSize } = this.state;
+        if (fileSize > 100000) {
+            this.setState({
+                error: "Archivo debe pesar menos de 100kb",
+                loading: false
+            });
+            return false;
+        }
+        if (title.length === 0 || body.length === 0) {
+            this.setState({ error: "todos los campos debe ser llenado", loading: false });
+            return false;
+        }
+        return true;
+    };
 
       handleChange = name => event => {
         this.setState({ error: "" });
@@ -48,6 +64,7 @@ class NewPost extends Component {
             const token = isAuthenticate().token;
 
             create(userId, token, this.postData).then(data => {
+                console.log(data)
                 if (data.error) this.setState({ error: data.error });
                 else {
                     this.setState({
@@ -67,25 +84,7 @@ class NewPost extends Component {
     
      
 
-
-
-
-
-    isValid = () => {
-        const { title, body, fileSize } = this.state;
-        if (fileSize > 10000000000) {
-            this.setState({
-                error: "Archivo debe pesar menos de 100kb",
-                loading: false
-            });
-            return false;
-        }
-        if (title.length === 0 || body.length === 0) {
-            this.setState({ error: "todos los campos debe ser llenado", loading: false });
-            return false;
-        }
-        return true;
-    };
+   
 
     newPostForm = (title, body) => (
         <form>
@@ -149,6 +148,13 @@ class NewPost extends Component {
                     {error}
                 </div>
 
+                {loading ? (
+                    <div className="jumbotron text-center">
+                        <h2>Loading..</h2>
+                    </div>
+                ) :(
+                    " "
+                )}
               
 
               
