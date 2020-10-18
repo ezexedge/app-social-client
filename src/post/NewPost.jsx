@@ -23,6 +23,13 @@ class NewPost extends Component {
         };
       }
 
+
+      componentDidMount(){
+        this.postData = new FormData()
+        this.setState({user: isAuthenticate().user})
+ 
+     }
+
       handleChange = name => event => {
         this.setState({ error: "" });
         const value =  name === "photo" ? event.target.files[0] : event.target.value;
@@ -61,16 +68,12 @@ class NewPost extends Component {
      
 
 
-    componentDidMount(){
-       this.postData = new FormData()
-       this.setState({user: isAuthenticate().user})
 
-    }
 
 
     isValid = () => {
         const { title, body, fileSize } = this.state;
-        if (fileSize > 100000) {
+        if (fileSize > 10000000000) {
             this.setState({
                 error: "Archivo debe pesar menos de 100kb",
                 loading: false
