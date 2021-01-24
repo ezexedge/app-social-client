@@ -110,7 +110,7 @@ class SinglePost extends Component {
             style={{height: "300px",width: "100%",objectFit: 'cover'}}
             />
 
-        {like ? ( <h3 onClick={this.likeToggle} > <i className="fa fa-thumbs-up text-success bg-dark" style={{padding: '10px',borderRadius:'50%'}}/> {' '} {likes} likes</h3> ) : 
+        {like ? ( <h3 onClick={this.likeToggle} > <i className="fa fa-thumbs-up text-success bg-dark" style={{padding: '10px',borderRadius:'50%,cursor:pointer}}/> {' '} {likes} likes</h3> ) : 
         ( <h3 onClick={this.likeToggle} > <i className="fa fa-thumbs-up text-warning bg-dark" style={{padding: '10px',borderRadius:'50%'}}/> {' '} {likes} likes</h3> )
  }
 
