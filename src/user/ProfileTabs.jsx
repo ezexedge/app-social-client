@@ -30,9 +30,7 @@ class ProfileTabs extends Component {
                                         height="30px"
                                            onError={i=>(i.target.src = `${DefaultProfile}`)}
 
-                                            src={`${
-                                                process.env.REACT_APP_API_URL
-                                            }/user/photo/${person._id}`}
+                                            src={`http://64.225.20.237/api/user/photo/${person._id}`}
                                             
                                             alt="img"
 
@@ -70,9 +68,7 @@ class ProfileTabs extends Component {
                                         height="30px"
                                            onError={i=>(i.target.src = `${DefaultProfile}`)}
 
-                                            src={`${
-                                                process.env.REACT_APP_API_URL
-                                            }/user/photo/${person._id}`}
+                                            src={`http://64.225.20.237/api/user/photo/${person._id}`}
                                             
                                             alt="img"
 

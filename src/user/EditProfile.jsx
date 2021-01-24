@@ -174,7 +174,7 @@ class EditProfile extends Component {
             return <Redirect to={`/user/${id}`} />
         }
 
-        const photoUrl = id ? `${process.env.REACT_APP_API_URL}/user/photo/${id}?${new Date().getTime()}` : DefaultProfile
+        const photoUrl = id ? `http://64.225.20.237/api/user/photo/${id}?${new Date().getTime()}` : DefaultProfile
 
 
         return ( 

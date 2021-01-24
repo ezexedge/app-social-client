@@ -162,7 +162,7 @@ class EditPost extends Component {
 
                 <img style={{height: "200px",width:'auto'}}
                 className="img-thumbnail"
-                src={`${process.env.REACT_APP_API_URL}/user/photo/${id}?${new Date().getTime()}`} 
+                src={`http://64.225.20.237/api/user/photo/${id}?${new Date().getTime()}`} 
                 alt={title}
                 onError={i => i.target.src = `${DefualtProfile}`}
                 />
