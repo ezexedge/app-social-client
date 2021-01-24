@@ -1,5 +1,5 @@
 export const create = (userId, token, post) => {
-    return fetch(`http://64.225.20.237/api/posts/new/${userId}`, {
+    return fetch(`http://64.225.20.237/api/post/new/${userId}`, {
         method: "POST",
         headers: {
             Accept: "application/json",
@@ -31,7 +31,7 @@ export const list = () => {
  export const singlePost = (postId) => {
 
 
-    return fetch(`http://64.225.20.237/api/posts/${postId}`,{
+    return fetch(`http://64.225.20.237/api/post/${postId}`,{
          method: "GET"
      })
      .then(response => {
@@ -62,7 +62,7 @@ export const list = () => {
 
  export const remove = (postId,token) => {
 
-    return fetch(`http://64.225.20.237/api/posts/${postId}`,{
+    return fetch(`http://64.225.20.237/api/post/${postId}`,{
          method: "DELETE",
          headers: { 
          Accept: "application/json",
@@ -78,7 +78,7 @@ export const list = () => {
 
 
  export const update = (postId, token, post) => {
-    return fetch(`http://64.225.20.237/api/posts/${postId}`, {
+    return fetch(`http://64.225.20.237/api/post/${postId}`, {
         method: "PUT",
         headers: {
             Accept: "application/json",
@@ -94,7 +94,7 @@ export const list = () => {
 
 
 export const like = (userId, token, postId) => {
-    return fetch(`http://64.225.20.237/api/posts/like`, {
+    return fetch(`http://64.225.20.237/api/post/like`, {
         method: "PUT",
         headers: {
             Accept: "application/json",
@@ -111,7 +111,7 @@ export const like = (userId, token, postId) => {
 
 
 export const unlike = (userId, token, postId) => {
-    return fetch(`http://64.225.20.237/api/posts/unlike`, {
+    return fetch(`http://64.225.20.237/api/post/unlike`, {
         method: "PUT",
         headers: {
             Accept: "application/json",
@@ -128,7 +128,7 @@ export const unlike = (userId, token, postId) => {
 
 
 export const comment = (userId, token, postId,comment) => {
-    return fetch(`http://64.225.20.237/api/posts/comment`, {
+    return fetch(`http://64.225.20.237/api/post/comment`, {
         method: "PUT",
         headers: {
             Accept: "application/json",

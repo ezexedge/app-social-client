@@ -1,6 +1,6 @@
 export const read = (userId,token) => {
 
-    return fetch(`${process.env.REACT_APP_API_URL}/user/${userId}`,{
+    return fetch(`http://64.225.20.237/api/user/${userId}`,{
          method: "GET",
          headers: { 
          Accept: "application/json",
